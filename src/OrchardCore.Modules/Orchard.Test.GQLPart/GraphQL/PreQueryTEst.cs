@@ -29,7 +29,9 @@ public class DrilldownPartPrequeryInputObjectType : InputObjectGraphType<Drilldo
 }
 public class DrilldownPartGraphQLFilter : GraphQLFilter<ContentItem>
 {
+#pragma warning disable CS1998 // V této asynchronní metodě chybí operátory await a spustí se synchronně.
     public override async Task<IQuery<ContentItem>> PreQueryAsync(IQuery<ContentItem> query, IResolveFieldContext context)
+#pragma warning restore CS1998 // V této asynchronní metodě chybí operátory await a spustí se synchronně.
     {
         if (!context.HasPopulatedArgument("where"))
         {
