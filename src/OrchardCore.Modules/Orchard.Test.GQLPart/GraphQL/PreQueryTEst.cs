@@ -29,18 +29,18 @@ public class DrilldownPartPrequeryInputObjectType : InputObjectGraphType<Drilldo
 }
 public class DrilldownPartGraphQLFilter : GraphQLFilter<ContentItem>
 {
-    public override Task<IQuery<ContentItem>> PreQueryAsync(IQuery<ContentItem> query, IResolveFieldContext context)
+    public override async Task<IQuery<ContentItem>> PreQueryAsync(IQuery<ContentItem> query, IResolveFieldContext context)
     {
         if (!context.HasPopulatedArgument("where"))
         {
-            return Task.FromResult(query);
+            return query;
         }
 
         var whereArguments = JObject.FromObject(context.Arguments["where"].Value);
 
         if (whereArguments == null)
         {
-            return Task.FromResult(query);
+            return query;
         }
 
         var drilldown = JObject.FromObject(whereArguments.Property("drilldown").Value);
@@ -74,9 +74,9 @@ public class DrilldownPartGraphQLFilter : GraphQLFilter<ContentItem>
                 drilldownQuery.Where(x => x.StyleContentId == styleContentId.ToString().Trim());
             }
 
-            return Task.FromResult((IQuery<ContentItem>)drilldownQuery);
+            return drilldownQuery;
         }
 
-        return Task.FromResult(query);
+        return query;
     }
 }

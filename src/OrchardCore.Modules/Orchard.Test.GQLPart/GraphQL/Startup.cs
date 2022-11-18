@@ -20,11 +20,11 @@ namespace OrchardCore.Test.GQLPart.GraphQL
             services.AddWhereInputIndexPropertyProvider<DrilldownPartIndex>();
 
             // whereinput
-            //services.AddInputObjectGraphType<DrilldownPart, DrilldownPartInputObjectType>();
+            services.AddInputObjectGraphType<DrilldownPart, DrilldownPartInputObjectType>();
 
             // prequery
-            services.AddInputObjectGraphType<DrilldownPart, DrilldownPartPrequeryInputObjectType>();
-            services.AddGraphQLFilterType<ContentItem, DrilldownPartGraphQLFilter>();
+            //services.AddInputObjectGraphType<DrilldownPart, DrilldownPartPrequeryInputObjectType>();
+            //services.AddGraphQLFilterType<ContentItem, DrilldownPartGraphQLFilter>();
         }
     }
 }
